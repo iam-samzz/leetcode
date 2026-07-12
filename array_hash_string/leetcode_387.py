@@ -8,4 +8,17 @@ class Solution:
         def find(s):
         
             #loading s into hashmap
+            h = {}
+
+            for i in s:
+                if i not in h:
+                    h[i] = 1
+                else:
+                    h[i] += 1
             
+            for index,element in enumerate(s):
+                if h[element] == 1:
+                    return index
+            
+            return -1
+        return find(s)
