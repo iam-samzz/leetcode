@@ -3,34 +3,23 @@ class Solution:
 
 
         def valid(s):
-
-            s = s.lower()
-
-            result = []
-            for i in s:
-                if i.isalnum():
-                    result.append(i)
-            if len(result) <= 1:
-                return True
-            final = "".join(result)
-
-
-            #checking palindrome
-
             left = 0
-            right = len(final) -1 
+            right = len(s) - 1
 
-            status = False
-            while left < right:
-                if final[left] == final[right]:
-                    status = True
-                else:
-                    status = False
-                    break    
-                left += 1
-                right -= 1
-            return status
-
-        return valid(s)
-    
             
+            while left < right:
+                if s[left].isalnum() == False:
+                    left += 1
+                    continue
+                if s[right].isalnum() == False:
+                    right -= 1
+                    continue
+
+                if s[left].lower() == s[right].lower():
+                    left += 1
+                    right -= 1
+                else:
+                    return False
+                
+            return True
+        return valid(s)
