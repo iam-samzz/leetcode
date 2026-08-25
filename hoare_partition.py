@@ -23,7 +23,7 @@ def func(nums):
         
     nums[j] , nums[pivot] = nums[pivot] , nums[j]
 
-    return nums
+    return nums[j]
 
 x = [0,43,32,5,5,65,-3,-55,-77,2,3,-4]
 
