@@ -1,28 +1,36 @@
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        
 
-        window = set()
-        i = 0
+        def func(nums,k):
 
-        for j in range(len(nums)):
+            n = len(nums)
+            window = set()
+            left = 0
 
-            # Condition 1: current distance is valid
-            if j - i <= k:
+            for right in range(n):
 
-                if nums[j] in window:
-                    return True
+                distance = right - left
 
-                window.add(nums[j])
+                #case 1
+                if distance <= k:
 
-            # Condition 2: current distance is too large
-            else:
-                window.remove(nums[i])
-                i += 1
+                    if nums[right] not in window:
+                        window.add(nums[right])
+                    else:
+                        return True
+                
 
-                # Now check again with the new i
-                if nums[j] in window:
-                    return True
+                #case 2
+                elif distance > k:
 
-                window.add(nums[j])
+                    window.remove(nums[left])
+                    left += 1
 
-        return False
+                    if nums[right] not in window:
+                        window.add(nums[right])
+                    else:
+                        return True
+                
+            return False
+        return func(nums,k)
