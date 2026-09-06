@@ -15,3 +15,4 @@ class Solution:
                     x -= 1
                 geekNum.append(s)
         return geekNum[-1]
+    #
