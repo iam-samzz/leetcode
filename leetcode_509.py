@@ -1,24 +1,17 @@
 class Solution:
     def fib(self, n: int) -> int:
         
+        def func(n):
 
-        def fibo(n):
-            
-            if n == 0:
-                return 0
-            elif n == 1:
-                return 1
+            f = []
 
-
-            x = fibo(n-1) + fibo(n-2)
-
-            return x
-
-        return fibo(n)
-
-
-    
-
+            for i in range(n+1):
+                if i == 0 or i == 1:
+                    f.append(i)
+                else:
+                    f.append(f[i-1] + f[i-2])
+            return f[-1]
+        return func(n)
 
 
 
