@@ -1,12 +1,13 @@
 class Solution:
    def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+        seen = {}
+        n = len(nums)
+        for i,element in enumerate(nums):
+            complement = target - element
+
+            if complement in seen:
+                return [seen[complement],i]
+            else:
+                seen[element] = i
         
-        result =[]
-        for i in range(0,len(nums)):
-            for j in range(0,len(nums)):
-                
-                if j!=i:
-                    if (nums[i] + nums[j] == target):
-                        result.append(i)
-                        result.append(j)
-                        return result
