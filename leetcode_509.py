@@ -12,7 +12,3 @@ class Solution:
                     f.append(f[i-1] + f[i-2])
             return f[-1]
         return func(n)
-
-
-
-            

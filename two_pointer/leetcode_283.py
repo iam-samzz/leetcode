@@ -3,17 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        
-        def function(nums):
-            
-            write = 0 #at the 1st location -> its slow
-            
-            for read in range(len(nums)):
-                
-                if nums[read] != 0:
-                    # swp to write
-                    if read != write:    
-                        nums[write],nums[read] = nums[read],0
-                    write += 1
+        left = 0
+        right = 0
+        n = len(nums)
+        while right < n:
+            if nums[right] != 0:
+                nums[left],nums[right] = nums[right],nums[left]
+                left += 1
+            right += 1
+        return nums
 
-        function(nums)
+    
