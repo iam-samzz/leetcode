@@ -1,36 +1,46 @@
 class Solution:
     def findKthPositive(self, arr: list[int], k: int) -> int:
         n = len(arr)
-        for i in range(n):
 
-            missing_so_far  = arr[i] - (i + 1)
+        low = 0
+        high = n - 1
 
-            if missing_so_far >= k:
-                if i == 0:
-                    return k
-                else:
-                    # finding the missing_so_far for prev element
-                    missing_prev  = arr[i-1] - ( (i-1) + 1)
-
-                    #remaining k need from prev element to reach kth missing
-                    remaining = k - missing_prev
-
-                    # reached the exact location of kth missing
-                    result = arr[i - 1] + remaining
-
-                    return result
+        while high - low  + 1 > 2:
+            mid = (low + high ) // 2
             
+            #find mid's current missing_so_for state
 
-        #finding missing so far for a last element
-        missing_so_far = arr[-1] - len(arr) -1 + 1
+            missing_so_far = arr[mid] - (mid + 1)
+
+            if missing_so_far < k:
+                low = mid
+
+            elif missing_so_far >= k:
+                high = mid
 
 
-        # remaining needed from the last element
-        remaining = k - missing_so_far
+        # now we got 2 ranges
+        if arr[high] - (high + 1) >= k and arr[low] - (low + 1) < k:
 
-        result = arr[-1] + remaining
+            #high
+            remaining = k - (arr[low] - (low + 1))
+            result = arr[low]  + remaining
 
-        return result
+            return result
+
+        elif arr[high] - (high + 1) < k and arr[low] - (low + 1) < k:
+            high = -1
+            missing_so_far = arr[high] - (high + 1)
+
+            remaining = k - missing_so_far 
+
+            result = arr[high] + remaining
+
+            return result
+        elif arr[low] - (low + 1) >= k :
+            return k
+
+                
 
         
 
