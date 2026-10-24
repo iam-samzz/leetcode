@@ -1,6 +1,6 @@
 '''
     Brute force method
-    
+
 '''
 
 class Solution:
@@ -30,8 +30,8 @@ class Solution:
         # the ranges of minimum distance for the stalls  is from 1 to  (distance b.w 1st element and last element)
         # i.e [1, max(arr) - min(arr)] inclusive range.
         
-        max_arr = max(arr)
-        min_arr = min(arr)
+        max_arr = arr[-1]
+        min_arr = arr[0]
         
         #lower bound for min distanece = 1
         # upepr bound for minimum distance is  max_arr - min_arr , that is two cows places at two extreams.
