@@ -1,12 +1,26 @@
-'''
-    Brute force method
-
-'''
-
 class Solution:
+    
+    def can_we_place(self,min_distance:int, n:int, arr:list, k: int):
+        cow_placed = 1
+        prev_pos = arr[0]
+        for j in range(1 , n):
+        
+            # checking if the distance b.w current and prev cow placement has required min distance
+            if arr[j] - prev_pos >= min_distance:
+                cow_placed += 1
+                prev_pos = arr[j]
+            
+            # once we reached by keeping k cows in the stalls, lets stop keeping extra cows..
+            if cow_placed == k:
+                
+                # once we kept k cows, which means, this particular minimum distance is valid! 
+                return  True
+        return False
+        
+    
     def aggressiveCows(self, arr, k):
         # code here
-        
+        n = len(arr)
         
         # eg : [1 , 2, 4 ,8 , 9]
         '''
@@ -30,43 +44,23 @@ class Solution:
         # the ranges of minimum distance for the stalls  is from 1 to  (distance b.w 1st element and last element)
         # i.e [1, max(arr) - min(arr)] inclusive range.
         
-        max_arr = arr[-1]
-        min_arr = arr[0]
+        max_arr = max(arr)
+        min_arr = min(arr)
         
         #lower bound for min distanece = 1
         # upepr bound for minimum distance is  max_arr - min_arr , that is two cows places at two extreams.
-        for i in range(1 , max_arr - min_arr + 1):
+        low = 1
+        high = max_arr - min_arr
+        
+        while low <= high:
             
-            # for every min distance, check if we can keep k cows
+            mid = (low + high )//2
             
-            # if yes, then change result
-            
-            # if no , then do nothing
-            
-            is_min_distance_valid = False
-            
-            # 1st cow is 1st placed in all combinations..in 1st pos
-            cow_placed = 1
-            prev_pos = arr[0]
-            
-            # starting from second element
-            for j in range(1 , len(arr)):
-                
-                # checking if the distance b.w current and prev cow placement has required min distance
-                if arr[j] - prev_pos >= i:
-                    cow_placed += 1
-                    prev_pos = arr[j]
-                
-                # once we reached by keeping k cows in the stalls, lets stop keeping extra cows..
-                if cow_placed == k:
-                    
-                    # once we kept k cows, which means, this particular minimum distance is valid! 
-                    is_min_distance_valid = True
-                    break
-            
-            
-            if is_min_distance_valid:
-                result = i
+            if self.can_we_place(mid , n , arr, k):
+                result = mid
+                low = mid + 1
             else:
-                break
+                high = mid - 1
+            
         return result
+    
