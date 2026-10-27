@@ -29,7 +29,6 @@ class Solution:
             return result
 
         elif arr[high] - (high + 1) < k and arr[low] - (low + 1) < k:
-            high = -1
             missing_so_far = arr[high] - (high + 1)
 
             remaining = k - missing_so_far 
