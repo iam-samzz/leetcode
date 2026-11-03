@@ -13,4 +13,4 @@ class Solution:
                     return strs[0][:longest_prefix + 1]
                 
             longest_prefix = i
-        return strs[0][:longest_prefix + 1]
+        return strs[0][:longest_prefix + 1] 
