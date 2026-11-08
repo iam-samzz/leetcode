@@ -12,6 +12,7 @@ class Solution:
                 else:
                     h[s[j]] += 1
 
+                # since the number of elements in the hash map (h) won't exceed 24, the time complexity of finding the mx and mn is O(1)
                 mx = max(h.values())
                 mn = min(h.values())
 
@@ -20,4 +21,4 @@ class Solution:
         return tot
 
             
-                
+                 
