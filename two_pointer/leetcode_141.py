@@ -6,19 +6,15 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
+
+
+        # cycle detection algorithm
+        p = head
+        q = head
         
-
-        def func(head):
-            index = 0
-            p1 = head
-            has = {}
-            
-            while p1 != None:
-
-                if p1 in has:
-                    return True
-                has[p1] = index
-
-                p1 = p1.next
-            return False
-        return func(head)
+        while p!= None and p.next != None:
+            q = q.next
+            p = p.next.next
+            if p == q:
+                return True
+        return False

@@ -7,27 +7,19 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
+        #floyd cycle detection algo
+        p = head
+        q = head
 
-        def func(head):
-            fast = head
-            slow = head
-            status = False
-            while (fast != None) and (fast.next != None):
-                slow = slow.next
-                fast = fast.next.next
+        while p!= None and p.next != None:
+            p = p.next.next
+            q = q.next
 
-                if slow == fast:
-                    status = True # cycle exists
-                    break
-
-            
-            if status == True:
-                slow = head
-
-                while slow != fast:
-                    slow = slow.next
-                    fast = fast.next
-
-                return slow
-            return None
-        return func(head)
+            if p == q: # loop found
+                
+                q = head
+                while q != p:
+                    p = p.next
+                    q = q.next
+                return p
+        return None
